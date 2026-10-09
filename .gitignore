@@ -1,0 +1,5 @@
+dataset/bossbase/
+dataset/capas/
+resultados/*/estego/
+.venv/
+__pycache__/

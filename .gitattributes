@@ -1,0 +1,8 @@
+# Finais de linha iguais no Windows e no Ubuntu da VM
+* text=auto eol=lf
+# Binários nunca são convertidos (protege o SHA-256 dos payloads)
+*.bin binary
+*.png binary
+*.jpg binary
+*.pgm binary
+*.zip binary

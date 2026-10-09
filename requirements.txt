@@ -1,0 +1,9 @@
+numpy
+pillow
+jpeglib
+scikit-image
+scipy
+statsmodels
+pandas
+psutil
+pytest
