@@ -27,7 +27,7 @@ with tempfile.TemporaryDirectory() as tmp:
 df = pd.DataFrame(linhas)
 df["quintil"] = pd.qcut(df["gradiente"], 5, labels=[1, 2, 3, 4, 5]).astype(int)
 df["elegivel"] = df["capacidade_dct_bits"] >= MINIMO_BITS
-df.to_csv("dataset/todas_imagens.csv", index=False)
+df.to_csv("dataset/todas_imagens.csv", index=False, lineterminator="\n")  # LF: mesmo SHA-256 no Windows e na VM
 
 sorteio = []
 for quintil, categoria in [(1, "baixa"), (3, "media"), (5, "alta")]:
@@ -40,4 +40,4 @@ for quintil, categoria in [(1, "baixa"), (3, "media"), (5, "alta")]:
         sorteio.append({"id": img_id, "categoria": categoria,
                         "uso": "experimento" if k < POR_CATEGORIA else "piloto"})
 sel = pd.DataFrame(sorteio).merge(df, on="id")
-sel.to_csv("dataset/selecao.csv", index=False)
+sel.to_csv("dataset/selecao.csv", index=False, lineterminator="\n")  # LF: mesmo SHA-256 no Windows e na VM
