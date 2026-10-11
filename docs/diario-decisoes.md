@@ -163,7 +163,7 @@ Em caso de conflito com os arquivos 04, 05 e 08, vale este diário.
 - Licença da BOSSBase (T1.1): texto, endereço e data do download ___
 - SHA-256 dos payloads (T1.2): baixa cb6e98cb… · media ff5b3217… · alta d0b3d6a8… (completos em "Payloads gerados (T1.2)")
 - Revisão de inércia dos payloads (T1.3): ___
-- Elegíveis por quintil (T1.4): Q1 ___ · Q3 ___ · Q5 ___
+- Elegíveis por quintil (T1.4): Q1 799 de 2.000 · Q3 1.994 de 2.000 · Q5 2.000 de 2.000 (detalhes em "Seleção das imagens (T1.4)")
 - Citações faltantes no referencial (T1.17): ___
 - Piloto (T2.1): tempo ___, estimativa do experimento ___, mediana do CV ___, steal time ___
 - Limiar final do detector (T2.2): ___
@@ -178,6 +178,23 @@ Em caso de conflito com os arquivos 04, 05 e 08, vale este diário.
 - payload_alta.bin  · 1.966 bytes · SHA-256: d0b3d6a8c88e7a575ba0ae7d992dfb4d5cb880f9401865bfb74bba689c3bd462
 - Observação: se a T1.4 acionar o plano B de capacidade (taxa alta 0,05 bpp), só o
   payload_alta é refeito com 1.638 bytes; baixa e média não mudam (são gerados antes)
+
+## Seleção das imagens (T1.4)
+- Data: 11/10/2026 · Seed mestra: 2026 (fluxo RNG_SORTEIO) · Script: scripts/selecionar_imagens.py
+- Base: 10.000 imagens .pgm 512×512 da BOSSBase 1.01; filtro de capacidade ≥ 17.301 bits (110% da taxa alta)
+- Saída do script:
+  - quintil 1: 799 elegíveis de 2000
+  - quintil 3: 1994 elegíveis de 2000
+  - quintil 5: 2000 elegíveis de 2000
+- Plano B (taxa alta 0,05 bpp) não foi necessário: o menor quintil tem 799 elegíveis (mínimo 40)
+- selecao.csv: 120 linhas, 40 por categoria (30 experimento + 10 piloto), ids sem repetição
+- SHA-256: selecao.csv e82a457e0894a149b71dfa26f4fff8eea8f8b522878d0d9c98bc0bed20988ba5 ·
+  todas_imagens.csv f7a8ae16fbf9382464f7dc110a5e97073692d28628d3d742fa606e813fd95c27
+- Reprodutibilidade: segunda execução gerou selecao.csv idêntico byte a byte
+- Ambiente: mesmo do DESVIO-01 (fora da VM), numpy 2.5.4, jpeglib 1.0.2, pandas 3.0.6, scikit-image 0.26.0
+- Observação: o quintil 1 (textura baixa) perde 60% das imagens no filtro de capacidade
+  (mediana 15.061 bits, abaixo do mínimo); a categoria "baixa" representa a parte mais
+  texturizada desse quintil, o que deve ser citado como limitação no texto
 
 ## Desvios
 (modelo: data · o que o protocolo previa · o que foi observado · o que foi adotado · quem aprovou)
