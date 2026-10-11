@@ -3,3 +3,9 @@ dataset/capas/
 resultados/*/estego/
 .venv/
 __pycache__/
+
+# Saídas de testes manuais e histogramas soltos (nunca versionar binários de teste)
+.pytest_cache/
+test_capa*
+test_estego*
+histograma_*.png
