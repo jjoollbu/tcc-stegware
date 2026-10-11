@@ -188,13 +188,20 @@ Em caso de conflito com os arquivos 04, 05 e 08, vale este diário.
   - quintil 5: 2000 elegíveis de 2000
 - Plano B (taxa alta 0,05 bpp) não foi necessário: o menor quintil tem 799 elegíveis (mínimo 40)
 - selecao.csv: 120 linhas, 40 por categoria (30 experimento + 10 piloto), ids sem repetição
-- SHA-256: selecao.csv e82a457e0894a149b71dfa26f4fff8eea8f8b522878d0d9c98bc0bed20988ba5 ·
-  todas_imagens.csv f7a8ae16fbf9382464f7dc110a5e97073692d28628d3d742fa606e813fd95c27
+- SHA-256 (arquivos com fim de linha LF): selecao.csv f39e72f26f6f762b8aaf396ea4826036e10165713b03d21e698e3867ead9ef23 ·
+  todas_imagens.csv d64d81eb6711939116c2daea9af3a0396c86cae40554a60a7396aea2211a6449
 - Reprodutibilidade: segunda execução gerou selecao.csv idêntico byte a byte
 - Ambiente: mesmo do DESVIO-01 (fora da VM), numpy 2.5.4, jpeglib 1.0.2, pandas 3.0.6, scikit-image 0.26.0
 - Observação: o quintil 1 (textura baixa) perde 60% das imagens no filtro de capacidade
   (mediana 15.061 bits, abaixo do mínimo); a categoria "baixa" representa a parte mais
   texturizada desse quintil, o que deve ser citado como limitação no texto
+
+## Capas e manifest (T1.5)
+- Data: 11/10/2026 · Script: scripts/preparar_capas.py
+- 120 PNG (compress_level 6) em dataset/capas/png/ e 120 JPEG (QF 95, jpeglib) em dataset/capas/jpeg/ (fora do Git)
+- Conferido: PNG idêntico pixel a pixel ao .pgm original; SHA-256 de .pgm, PNG e JPEG batem com o manifest
+- manifest.csv (LF): 120 linhas, sem campos vazios · SHA-256 07fb82c56ddd4520667bb24d224a8e1e8335ef96128c431715943c31b215bb1b
+- Reprodutibilidade: segunda execução gerou manifest.csv idêntico
 
 ## Desvios
 (modelo: data · o que o protocolo previa · o que foi observado · o que foi adotado · quem aprovou)
