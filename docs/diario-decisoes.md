@@ -161,7 +161,7 @@ Em caso de conflito com os arquivos 04, 05 e 08, vale este diário.
 
 - Configuração da VM (T0.4): hospedeiro ___, hipervisor ___, vCPUs ___, RAM ___
 - Licença da BOSSBase (T1.1): texto, endereço e data do download ___
-- SHA-256 dos payloads (T1.2): baixa ___ · media ___ · alta ___
+- SHA-256 dos payloads (T1.2): baixa cb6e98cb… · media ff5b3217… · alta d0b3d6a8… (completos em "Payloads gerados (T1.2)")
 - Revisão de inércia dos payloads (T1.3): ___
 - Elegíveis por quintil (T1.4): Q1 ___ · Q3 ___ · Q5 ___
 - Citações faltantes no referencial (T1.17): ___
@@ -171,5 +171,23 @@ Em caso de conflito com os arquivos 04, 05 e 08, vale este diário.
 - Experimento (T4.2): início ___, fim ___, interrupções ___
 - Tag dados-v1 e backup (T4.4): SHA-256 do backup ___
 
+## Payloads gerados (T1.2)
+- Data: 11/10/2026 · Seed mestra: 2026 (fluxo RNG_PAYLOADS) · Gerador: PCG64
+- payload_baixa.bin · 131 bytes · SHA-256: cb6e98cb149f6485a1fe164cebc2f2b685d1d731b1a6898105a02252cea41774
+- payload_media.bin · 983 bytes · SHA-256: ff5b3217d621c6dcea8b543e24d60c7fceaacc1500e4036f10b528e7dca19d03
+- payload_alta.bin  · 1.966 bytes · SHA-256: d0b3d6a8c88e7a575ba0ae7d992dfb4d5cb880f9401865bfb74bba689c3bd462
+- Observação: se a T1.4 acionar o plano B de capacidade (taxa alta 0,05 bpp), só o
+  payload_alta é refeito com 1.638 bytes; baixa e média não mudam (são gerados antes)
+
 ## Desvios
 (modelo: data · o que o protocolo previa · o que foi observado · o que foi adotado · quem aprovou)
+
+## DESVIO-01 — Payloads gerados fora da VM oficial
+- Data: 11/10/2026 · Responsável: Jonmar
+- Previsto: T1.2 executada na máquina oficial (VM Ubuntu 24.04)
+- Feito: geração em outra máquina, com NumPy travado em `numpy==2.5.4` no requirements.txt
+  (Python 3.12.3, sistema Windows 10 Pro 10.0.19045)
+- Motivo: VM (T0.4) ainda não disponível; payloads não dependem da VM nem das imagens
+- Garantia: a VM instala a mesma versão do NumPy; a T1.3 confirma a reprodução idêntica;
+  os .bin versionados no Git e os SHA-256 acima são a referência definitiva
+- Impacto: nenhum nas medições
